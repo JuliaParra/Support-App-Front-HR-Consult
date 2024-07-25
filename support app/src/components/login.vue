@@ -1,43 +1,64 @@
 <template>
-    <div class="login">
-      <h1>Login</h1>
-      <form @submit.prevent="handleLogin">
+  <div class="login-container">
+    <h1>Iniciar Sesión</h1>
+    <form @submit.prevent="login">
+      <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" v-model="username" required />
+        <input type="text" id="username" v-model="username" required>
+      </div>
+      <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" v-model="password" required />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  </template>
+        <input type="password" id="password" v-model="password" required>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</template>
 
+<script setup>
+import { ref } from 'vue';
+
+const username = ref('');
+const password = ref('');
+
+function login() {
+  console.log(`Username: ${username.value}, Password: ${password.value}`);
+}
+</script>
 
 <style scoped>
 .login-container {
   max-width: 400px;
-  margin: auto;
-  padding: 2em;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #1e1e1e;
   border-radius: 8px;
+  color: #f5f5f5;
   text-align: center;
 }
 .form-group {
-  margin-bottom: 1em;
+  margin-bottom: 15px;
 }
 input {
-  width: 100%;
-  padding: 0.5em;
-  margin-top: 0.5em;
-  border: 1px solid #ccc;
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-top: 5px;
   border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #f5f5f5;
 }
-.btn {
-  padding: 0.5em 2em;
-  background: #007bff;
-  color: #fff;
+button {
+  width: 100%;
+  padding: 10px;
   border: none;
   border-radius: 4px;
+  background-color: #ffa726;
+  color: #121212;
+  font-size: 16px;
   cursor: pointer;
+}
+button:hover {
+  background-color: #ff9800;
 }
 </style>
