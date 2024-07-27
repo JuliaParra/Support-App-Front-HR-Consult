@@ -3,20 +3,20 @@
     <h2>Nueva Solicitud</h2>
     <form @submit.prevent="submitForm">
       <div class="form-group">
-        <label for="name">Nombre del Solicitante</label>
-        <input type="text" id="name" v-model="name" required>
+        <label for="nombre">Nombre del Solicitante</label>
+        <input type="text" id="nombre" v-model="nombre" required>
       </div>
       <div class="form-group">
-        <label for="date">Fecha de la Solicitud</label>
-        <input type="date" id="date" v-model="date" required>
+        <label for="fecha">Fecha de la Solicitud</label>
+        <input type="date" id="date" v-model="fecha" >
       </div>
       <div class="form-group">
-        <label for="topic">Tema de la Consulta</label>
-        <input type="text" id="topic" v-model="topic" required>
+        <label for="tema">Tema de la Consulta</label>
+        <input type="text" id="tema" v-model="tema" required>
       </div>
       <div class="form-group">
-        <label for="description">Descripción de la Consulta</label>
-        <textarea id="description" v-model="description" required></textarea>
+        <label for="descripcion">Descripción de la Consulta</label>
+        <textarea id="descripcion" v-model="descripcion" required></textarea>
       </div>
       <button type="submit">Enviar</button>
       <button type="button" @click="resetForm">Resetear</button>
@@ -28,32 +28,56 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { API_BASE_URL } from '../config/config.js';
 
 const router = useRouter();
 
-const name = ref('');
-const date = ref('');
-const topic = ref('');
-const description = ref('');
+const nombre = ref('');
+const fecha = ref('');
+const tema = ref('');
+const descripcion = ref('');
 
-const submitForm = () => {
-  // Lógica para enviar los datos al backend
-  console.log(`Nombre: ${name.value}, Fecha: ${date.value}, Tema: ${topic.value}, Descripción: ${description.value}`);
-  //  enviar los datos al backend,  llamada a una API.
+const submitForm = async () => {
+  try {
+    const formattedDate = fecha.value ? new Date(fecha.value).toISOString().split('T')[0] : null;
+
+
+    console.log('Datos enviados:', {
+      nombre: nombre.value,
+      fecha: formattedDate,
+      tema: tema.value,
+      descripcion: descripcion.value,
+    });
+
+    const response = await axios.post(API_BASE_URL, {
+  nombre: nombre.value,
+  fecha: formattedDate,
+  tema: tema.value,
+  descripcion: descripcion.value,
+});
+
+    if (response.status === 200) {
+      alert('Solicitud enviada con éxito');
+      router.push({ name: 'solicitudesView' });
+    }
+  } catch (error) {
+    console.error('Error al enviar la solicitud:', error.response ? error.response.data : error.message);
+    alert('Hubo un problema al enviar la solicitud. Por favor, inténtalo de nuevo más tarde.');
+  }
 };
 
 const resetForm = () => {
-  name.value = '';
-  date.value = '';
-  topic.value = '';
-  description.value = '';
+  nombre.value = '';
+  fecha.value = '';
+  tema.value = '';
+  descripcion.value = '';
 };
 
 const cancel = () => {
-  router.push({ name: 'solicitudes' });
+  router.push({ name: 'HomePage' });
 };
 </script>
-
 <style scoped>
 .nueva-solicitud {
   max-width: 600px;

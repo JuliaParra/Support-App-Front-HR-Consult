@@ -31,28 +31,28 @@ import { useRoute, useRouter } from 'vue-router';
 const route = useRoute();
 const router = useRouter();
 
-const name = ref('');
-const date = ref('');
-const topic = ref('');
-const description = ref('');
+const nombre = ref('');
+const fecha = ref('');
+const tema = ref('');
+const descripcion = ref('');
 
 onMounted(() => {
-  // Cargar datos de la solicitud existente
+  
   const requestId = route.params.id;
   // Aquí se podría hacer una llamada a la API para obtener los datos de la solicitud
   
   fetchSolicitud(requestId).then(data => {
-    name.value = data.name;
-    date.value = data.date;
-    topic.value = data.topic;
-    description.value = data.description;
+    nombree.value = data.nombre;
+    fecha.value = data.fecha;
+    tema.value = data.tema;
+    descripcion.value = data.descripcion;
   });
 });
 
 const submitForm = () => {
   // Lógica para actualizar los datos en el backend
-  console.log(`Nombre: ${name.value}, Fecha: ${date.value}, Tema: ${topic.value}, Descripción: ${description.value}`);
-  // Aquí podrías realizar una llamada a la API para actualizar la solicitud
+  console.log(`Nombre: ${nombre.value}, Fecha: ${fecha.value}, Tema: ${tema.value}, Descripción: ${descripcion.value}`);
+  // llamada a la API para actualizar la solicitud
   // Una vez actualizado, redirigir a la lista de solicitudes
   router.push({ name: 'solicitudes' });
 };

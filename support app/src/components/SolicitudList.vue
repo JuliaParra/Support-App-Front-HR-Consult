@@ -2,10 +2,10 @@
   <div class="requests-list">
     <h2>Solicitudes</h2>
     <div v-for="request in requests" :key="request.id" class="request-card">
-      <h3>{{ request.name }}</h3>
-      <p>{{ request.date }}</p>
-      <p>{{ request.topic }}</p>
-      <router-link :to="{ name: 'editarSolicitud', params: { id: request.id } }">Editar</router-link>
+      <h3>{{ request.nombre }}</h3>
+      <p>{{ request.fecha }}</p>
+      <p>{{ request.tema }}</p>
+      <router-link :to="{ nombre: 'editarSolicitud', params: { id: request.id } }">Editar</router-link>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ const requests = ref([]);
 
 onMounted(() => {
 
-  fetch('url/to/api/solicitudes')
+  fetch('http://localhost:8080/api/solicitud')
     .then(response => response.json())
     .then(data => {
       requests.value = data;
@@ -25,9 +25,9 @@ onMounted(() => {
 
  
   requests.value = [
-    { id: 1, name: 'Juan Pérez', date: '2024-07-25', topic: 'Consulta General' },
-    { id: 2, name: 'Ana Gómez', date: '2024-07-24', topic: 'Soporte Técnico' },
-    { id: 3, name: 'Luis Martínez', date: '2024-07-23', topic: 'Consulta Legal' }
+    { id: 1, nombre: 'Juan Pérez', fecha: '2024-07-25', tema: 'Consulta General' },
+    { id: 2, nombre: 'Ana Gómez', fecha: '2024-07-24', tema: 'Soporte Técnico' },
+    { id: 3, nombre: 'Luis Martínez', fecha: '2024-07-23', tema: 'Consulta Legal' }
   ];
 });
 </script>

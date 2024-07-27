@@ -7,6 +7,7 @@
 <script setup>
 import NuevaSolicitud from '../components/NuevaSolicitud.vue'; 
 
+
 </script>
 
 <style scoped>
