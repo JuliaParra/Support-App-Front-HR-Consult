@@ -8,7 +8,7 @@ const routes = [
   },
   { 
     path: '/solicitudes', 
-    name: 'solicitudesView', 
+    name: 'solicitudes', 
     component: () => import('../views/SolicitudesView.vue') 
   },
   { 
@@ -17,7 +17,7 @@ const routes = [
     component: () => import('../views/NuevaSolicitudView.vue') 
   },
   { 
-    path: '/editar-solicitud/:id', 
+    path: '/editar-solicitud', 
     name: 'editarSolicitud', 
     component: () => import('../views/EditarSolicitudView.vue'),
     props: true 

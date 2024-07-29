@@ -8,7 +8,7 @@
       </div>
       <div class="form-group">
         <label for="fecha">Fecha de la Solicitud</label>
-        <input type="date" id="date" v-model="fecha" >
+        <input type="date" id="fecha" v-model="fecha">
       </div>
       <div class="form-group">
         <label for="tema">Tema de la Consulta</label>
@@ -29,7 +29,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
-import { API_BASE_URL } from '../config/config.js';
+import { API_BASE_URL } from '../config/config';
 
 const router = useRouter();
 
@@ -40,29 +40,19 @@ const descripcion = ref('');
 
 const submitForm = async () => {
   try {
-    const formattedDate = fecha.value ? new Date(fecha.value).toISOString().split('T')[0] : null;
-
-
-    console.log('Datos enviados:', {
+    const response = await axios.post(`${API_BASE_URL}/api/solicitud`, {
       nombre: nombre.value,
-      fecha: formattedDate,
+      fecha: fecha.value,
       tema: tema.value,
       descripcion: descripcion.value,
     });
 
-    const response = await axios.post(API_BASE_URL, {
-  nombre: nombre.value,
-  fecha: formattedDate,
-  tema: tema.value,
-  descripcion: descripcion.value,
-});
-
     if (response.status === 200) {
       alert('Solicitud enviada con éxito');
-      router.push({ name: 'solicitudesView' });
+      router.push({ name: 'solicitudes' }); // Redirige a una página de éxito o a donde desees
     }
   } catch (error) {
-    console.error('Error al enviar la solicitud:', error.response ? error.response.data : error.message);
+    console.error('Error al enviar la solicitud:', error);
     alert('Hubo un problema al enviar la solicitud. Por favor, inténtalo de nuevo más tarde.');
   }
 };
@@ -75,7 +65,7 @@ const resetForm = () => {
 };
 
 const cancel = () => {
-  router.push({ name: 'HomePage' });
+  router.push({ name: 'login' }); // Redirige a la página principal o a donde desees
 };
 </script>
 <style scoped>
@@ -110,7 +100,7 @@ button {
   cursor: pointer;
 }
 button[type="submit"] {
-  background-color: #ffa726;
+  background-color: #e2a8f9;
   color: #121212;
 }
 button[type="button"] {
@@ -121,3 +111,5 @@ button:hover {
   opacity: 0.9;
 }
 </style>
+
+

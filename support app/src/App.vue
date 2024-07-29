@@ -8,6 +8,7 @@
             <li><router-link to="/">Inicio</router-link></li>
             <li><router-link to="/solicitudes">Solicitudes</router-link></li>
             <li><router-link to="/nueva-solicitud">Nueva Solicitud</router-link></li>
+            <li><router-link to="/editar-solicitud">Editar Solicitud</router-link></li>
            
           </ul>
         </nav>
@@ -51,7 +52,7 @@ export const App = {
 }
 
 .nav-bar a {
-  color: #ffb74d;
+  color: #e2a8f9;
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 3px;
@@ -59,7 +60,7 @@ export const App = {
 }
 
 .nav-bar a:hover {
-  background-color: #ffa726;
+  background-color: #e2a8f9;
 }
 
 .main-content {
