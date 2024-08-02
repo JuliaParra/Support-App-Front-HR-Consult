@@ -1,35 +1,19 @@
-# support app
+# Plataforma de Soporte Técnico
 
-This template should help get you started developing with Vue 3 in Vite.
+## Descripción
+Aplicación web para que los empleados de una startup puedan solicitar soporte técnico a su departamento informático. El software permite gestionar solicitudes de soporte y marcarlas como completadas por los técnicos.
 
-## Recommended IDE Setup
+## Tecnologías Utilizadas
+- **Frontend**: Vue.js, SCSS
+- **Backend**: Java (Spring Boot)
+- **Base de Datos**:H2
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Funcionalidades
+- 
+- **Lista de solicitudes**: Ver todas las solicitudes de soporte realizadas.
+- **Crear solicitud**: Formulario para crear una nueva solicitud de soporte.
+- **Editar solicitud**: Editar una solicitud existente.
+-
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```

@@ -49,7 +49,7 @@ const submitForm = async () => {
 
     if (response.status === 200) {
       alert('Solicitud enviada con éxito');
-      router.push({ name: 'solicitudes' }); // Redirige a una página de éxito o a donde desees
+      router.push({ name: 'solicitudes' }); 
     }
   } catch (error) {
     console.error('Error al enviar la solicitud:', error);
@@ -65,7 +65,7 @@ const resetForm = () => {
 };
 
 const cancel = () => {
-  router.push({ name: 'login' }); // Redirige a la página principal o a donde desees
+  router.push({ name: 'login' }); 
 };
 </script>
 <style scoped>
